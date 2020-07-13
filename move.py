@@ -4,47 +4,53 @@ import os
 
 
 def set_source_path():
-    return
+    print("Set source directory: ")
+    source_path = input()
+    return source_path
 
 
 def set_destination_path():
-    return
+    print("Set destination directory: ")
+    destination_path = input()
+    return destination_path
 
 
 def set_format():
-    return
+    print("Set file extenstion [without '.']: ")
+    file_ext = "." + input()
+    return file_ext
 
 
 def list_files():
-    src = set_source_path()
-    format = set_format()
-    for root, dirs, files in os.walk(src):
+    source_path = set_source_path()
+    file_ext = set_format()
+    for root, dirs, files in os.walk(source_path):
         for file in files:
-            if file.endswith(format):
+            if file.endswith(file_ext):
                 path_file = os.path.join(root, file)
                 print(path_file)
 
 
 def copy_files():
-    src = set_source_path()
-    dest = set_destination_path()
-    format = set_format()
-    for root, dirs, files in os.walk(src):
+    source_path = set_source_path()
+    destination_path = set_destination_path()
+    file_ext = set_format()
+    for root, dirs, files in os.walk(source_path):
         for file in files:
-            if file.endswith(format):
+            if file.endswith(file_ext):
                 path_file = os.path.join(root, file)
-                shutil.copy2(path_file, dest)
+                shutil.copy2(path_file, destination_path)
 
 
 def move_files():
-    src = set_source_path()
-    dest = set_destination_path()
-    format = set_format()
-    for root, dirs, files in os.walk(src):
+    source_path = set_source_path()
+    destination_path = set_destination_path()
+    file_ext = set_format()
+    for root, dirs, files in os.walk(source_path):
         for file in files:
-            if file.endswith(format):
+            if file.endswith(file_ext):
                 path_file = os.path.join(root, file)
-                shutil.move(path_file, dest)
+                shutil.move(path_file, destination_path)
 
 
 def switch(argument):
@@ -59,5 +65,4 @@ def switch(argument):
 
 if __name__ == "__main__":
     print("MENU\n1. List files\n2. Copy files\n3. Move files\nYour selection [1-3] : ")
-    selection = input()
-    print(switch(selection))
+    print(switch(input()))
