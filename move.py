@@ -49,19 +49,15 @@ def move_files():
 
 def switch(argument):
     switcher = {
-        0: "zero",
-        # 1: list_files(),
-        # 2: copy_files(),
-        # 3: move_files(),
-        4: "void",
+        "1": list_files,
+        "2": copy_files,
+        "3": move_files,
     }
-    return switcher.get(argument, "nothing")
+    func = switcher.get(argument, lambda: 'Invalid')
+    return func()
 
 
 if __name__ == "__main__":
     print("MENU\n1. List files\n2. Copy files\n3. Move files\nYour selection [1-3] : ")
-    selection = 5
-    # selection = input()
-    print(selection)
-    switch(selection)
+    selection = input()
     print(switch(selection))
