@@ -47,6 +47,21 @@ def move_files():
                 shutil.move(path_file, dest)
 
 
+def switch(argument):
+    switcher = {
+        0: "zero",
+        # 1: list_files(),
+        # 2: copy_files(),
+        # 3: move_files(),
+        4: "void",
+    }
+    return switcher.get(argument, "nothing")
+
+
 if __name__ == "__main__":
     print("MENU\n1. List files\n2. Copy files\n3. Move files\nYour selection [1-3] : ")
-    readchar.readchar()
+    selection = 5
+    # selection = input()
+    print(selection)
+    switch(selection)
+    print(switch(selection))
