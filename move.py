@@ -1,38 +1,52 @@
 import shutil
+import readchar
 import os
 
 
-# src = "D://UT//VID"
-# dest = "D://UT//VIDMOVE"
-# format = "." + "mp4"
-#
-# def set_source_path():
-#
-# def set_destination_path():
-#
-# def set_format():
-#
-#
-# def list_files(src, format):
-#     for root, dirs, files in os.walk(src):
-#         for file in files:
-#             if file.endswith(format):
-#                 path_file = os.path.join(root, file)
-#                 print(path_file)
-#
-# def copy_files(src, dest, format):
-#     for root, dirs, files in os.walk(src):
-#         for file in files:
-#             if file.endswith(format):
-#                 path_file = os.path.join(root, file)
-#                 shutil.copy2(path_file, dest)
-#
-# def move_files(src, dest, format):
-#     for root, dirs, files in os.walk(src):
-#         for file in files:
-#             if file.endswith(format):
-#                 path_file = os.path.join(root, file)
-#                 shutil.move(path_file, dest)
+def set_source_path():
+    return
 
-def main(self, context):
-    print("MENU\n1. List files\n2. Copy files\n3. Move files\nYour select[1-3]: ")
+
+def set_destination_path():
+    return
+
+
+def set_format():
+    return
+
+
+def list_files():
+    src = set_source_path()
+    format = set_format()
+    for root, dirs, files in os.walk(src):
+        for file in files:
+            if file.endswith(format):
+                path_file = os.path.join(root, file)
+                print(path_file)
+
+
+def copy_files():
+    src = set_source_path()
+    dest = set_destination_path()
+    format = set_format()
+    for root, dirs, files in os.walk(src):
+        for file in files:
+            if file.endswith(format):
+                path_file = os.path.join(root, file)
+                shutil.copy2(path_file, dest)
+
+
+def move_files():
+    src = set_source_path()
+    dest = set_destination_path()
+    format = set_format()
+    for root, dirs, files in os.walk(src):
+        for file in files:
+            if file.endswith(format):
+                path_file = os.path.join(root, file)
+                shutil.move(path_file, dest)
+
+
+if __name__ == "__main__":
+    print("MENU\n1. List files\n2. Copy files\n3. Move files\nYour selection [1-3] : ")
+    readchar.readchar()
