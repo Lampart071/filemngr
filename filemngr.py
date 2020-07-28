@@ -3,6 +3,8 @@ import shutil
 import os
 
 
+# Set the path will be used
+# Check process confirmation flag
 def set_path(info):
     print(info)
     path = input()
@@ -14,6 +16,7 @@ def set_path(info):
         menu()
 
 
+# Set file extension you want to proceed with
 def set_extension():
     print("Set file extension [without '.']: ")
     file_ext = "." + input()
@@ -22,6 +25,7 @@ def set_extension():
     return file_ext
 
 
+#  Confirm selected data to proceed
 def process_confirmation(path_src, path_dest, extension):
     print(path_src, " <- Source path")
     print(path_dest, " <- Destination path")
@@ -37,6 +41,8 @@ def process_confirmation(path_src, path_dest, extension):
     return flag_can_continue
 
 
+# Confirm selected path is correct
+# Change path if incorrect
 def path_confirmation(path, flag_can_continue=False):
     print(path, " <-  is that a correct path? [(Y)es, (N)o]")
     confirmation_input = input()
@@ -56,6 +62,7 @@ def path_confirmation(path, flag_can_continue=False):
     return path, flag_can_continue
 
 
+#  List all the files in directory ending with chosen extension
 def list_files():
     source_path = set_path("Set source directory: ")
     file_ext = set_extension()
@@ -70,16 +77,21 @@ def list_files():
     return menu()
 
 
+# Copy files with chosen extension to selected directory
 def copy_files():
+    # Set and confirm if chosen path is correct
     source_path = set_path("Set source directory: ")
     destination_path = set_path("Set destination directory: ")
+    # Set searched file extension
     file_ext = set_extension()
+    # Find all files with chosen extension
     if process_confirmation(source_path, destination_path, file_ext):
         for root, dirs, files in os.walk(source_path):
             for file in files:
                 if file.endswith(file_ext):
                     path_file = os.path.join(root, file)
                     try:
+                        # Copy file to chosen directory
                         shutil.copy2(path_file, destination_path)
                         print(path_file, " -> ", destination_path, " [COPY DONE!]\n")
                     except OSError as err:
@@ -92,16 +104,21 @@ def copy_files():
         return menu()
 
 
+# Move files with chosen extension to selected directory
 def move_files():
+    # Set and confirm if chosen path is correct
     source_path = set_path("Set source directory: ")
     destination_path = set_path("Set destination directory: ")
+    # Set searched file extension
     file_ext = set_extension()
+    # Find all files with chosen extension
     if process_confirmation(source_path, destination_path, file_ext):
         for root, dirs, files in os.walk(source_path):
             for file in files:
                 if file.endswith(file_ext):
                     path_file = os.path.join(root, file)
                     try:
+                        # Move file to chosen directory
                         shutil.move(path_file, destination_path)
                         print(path_file, " -> ", destination_path, " [MOVE DONE!]\n")
                     except OSError as err:
@@ -114,6 +131,7 @@ def move_files():
         return menu()
 
 
+#  Menu switch
 def select_operation_switch(argument):
     switcher = {
         "1": list_files,
@@ -125,6 +143,8 @@ def select_operation_switch(argument):
     return func()
 
 
+#  Menu list
+#  Proceed to Menu switch
 def menu():
     print("MENU\n1. List files\n2. Copy files\n3. Move files\nQ. Quit\nYour selection [1-3,Q] : ")
     print(select_operation_switch(input()))
@@ -132,3 +152,8 @@ def menu():
 
 if __name__ == "__main__":
     menu()
+
+# 1. find all movie formats
+# 2. create and move movies to current directory inside the folder
+# 3. duplicates?
+# 4. Cut out presented strings from filename
